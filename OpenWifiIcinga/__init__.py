@@ -27,4 +27,4 @@ def addToIcinga(uuid):
         print("No Device found...")
         return
 
-    icingaConnection.add_host(uuid, address = device.address,check_command='hostalive')
+    icingaConnection.add_host(uuid, address = device.address,check_command=['hostalive', 'ssh'])
