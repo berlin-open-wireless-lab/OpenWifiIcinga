@@ -24,6 +24,14 @@ def icingaConf(request):
             DBSession.add(newConfig)
 
         return HTTPFound(location=request.route_url('home'))
+    else:
+        icingaConfig = DBSession.query(Icinga).all()
+        if len(icingaConfig) > 0:
+            form.login.data = icingaConfig[0].login
+            form.password.data = icingaConfig[0].password
+            form.port.data = icingaConfig[0].port
+            form.url.data = icingaConfig[0].url
+            form.verify.data = icingaConfig[0].verify
 
     save_url = request.route_url('icinga')
     return {'save_url':save_url, 'form':form}
