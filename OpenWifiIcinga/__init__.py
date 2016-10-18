@@ -28,4 +28,4 @@ def addToIcinga(uuid):
         return
 
     icingaConnection.add_host(uuid, address=device.address,check_command='hostalive')
-    icingaConnection.add_service("ssh_"+uuid, host=uuid, check_command='ssh')
+    icingaConnection.add_service(uuid+"!ssh", check_command='ssh')
