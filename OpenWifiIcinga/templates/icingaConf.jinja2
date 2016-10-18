@@ -1,13 +1,16 @@
 {% extends main_template %}
 
 {% block content %}
-<form class="openwifi form-inline" action="{{ save_url }}" method="POST">
-    {{ form.url(class="form-control", placeholder="URL") }}
-    {{ form.login(class="form-control", placeholder="login") }}
-    {{ form.password(class="form-control", placeholder="password") }}
-    {{ form.port(class="form-control", placeholder="port") }}
-    {{ form.verify(class="form-control", placeholder="verify") }}
-    <button type="submit" name="form.submitted" class="btn btn-default">Submit</button>
+
+<form class="openwifi" action="{{ save_url }}" method="POST">
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.label }}
+        {{ field(class='form-control')}}
+      </div>
+    {% endfor %}
+    <button type="submit" name="form.submitted" class="btn btn-default">Save</button>
     <!-- <input type="submit" class="form-control" name="form.submitted" value="Add" /> -->
 </form>
+
 {% endblock %}
